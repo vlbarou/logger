@@ -1,14 +1,16 @@
 package common_logger
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
-	"github.com/stretchr/testify/suite"
-	"logger/mocks"
-	"logger/zapLogger"
 	"os"
 	"testing"
 	"time"
+
+	"github.com/vlbarou/logger/zapLogger"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"github.com/stretchr/testify/suite"
+	"github.com/vlbarou/logger/mocks"
 )
 
 type LoggerTestSuite struct {

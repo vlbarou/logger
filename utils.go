@@ -1,8 +1,9 @@
 package common_logger
 
 import (
-	"logger/zapLogger"
 	"strconv"
+
+	"github.com/vlbarou/logger/zapLogger"
 )
 
 func startLogger(config []Config) {

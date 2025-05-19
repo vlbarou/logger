@@ -2,8 +2,9 @@ package common_logger
 
 import (
 	"errors"
-	"logger/default_logger"
 	"sync"
+
+	"github.com/vlbarou/logger/default_logger"
 )
 
 var (
