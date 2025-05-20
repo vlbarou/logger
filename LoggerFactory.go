@@ -14,17 +14,17 @@ var (
 	initError      error
 )
 
-func GetLogger(loggerType LoggerType, config ...Config) error {
+func GetLogger(loggerType LoggerType, config ...Config) (Logger, error) {
 	once.Do(func() {
 		switch loggerType {
 		case Zap:
-			startLogger(config)
+			loggerInstance = startLogger(config)
 		default:
 			loggerInstance = default_logger.New()
 			initError = errors.New("required logger not found. Default logger initialized")
 		}
 	})
-	return initError
+	return loggerInstance, initError
 }
 
 func Shutdown() error {

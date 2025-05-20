@@ -6,7 +6,7 @@ import (
 	"github.com/vlbarou/logger/zapLogger"
 )
 
-func startLogger(config []Config) {
+func startLogger(config []Config) Logger {
 	loggerInstance = zapLogger.New()
 	l, _ := loggerInstance.(*zapLogger.LoggerImpl)
 
@@ -31,7 +31,7 @@ func startLogger(config []Config) {
 	}
 
 	l.Start()
-	loggerInstance = l
+	return l
 }
 
 func toInt(s string) int {

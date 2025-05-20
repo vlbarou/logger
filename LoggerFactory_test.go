@@ -31,7 +31,7 @@ func (suite *LoggerTestSuite) TestCreateLoggerWithDefaultConfig() {
 	suite.tempLogFile, suite.tempDir, err = createTempFile()
 
 	// act
-	err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
+	_, err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
 
 	// assert
 	l, ok := loggerInstance.(*zapLogger.LoggerImpl)
@@ -69,7 +69,7 @@ func (suite *LoggerTestSuite) TestCreateLoggerWithCustomConfig() {
 		MaxAge:     "3",
 		LogFile:    suite.tempLogFile.Name(),
 	}
-	err = GetLogger(Zap, config)
+	_, err = GetLogger(Zap, config)
 
 	// assert
 	l, ok := loggerInstance.(*zapLogger.LoggerImpl)
@@ -102,7 +102,7 @@ func (suite *LoggerTestSuite) TestCallGetLoggerMultipleTimes() {
 
 	// arrange
 	suite.tempLogFile, suite.tempDir, err = createTempFile()
-	err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
+	_, err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
 
 	// act (try to create a new logger with a new configuration)
 	config := Config{
@@ -111,7 +111,7 @@ func (suite *LoggerTestSuite) TestCallGetLoggerMultipleTimes() {
 		MaxAge:      "3",
 		LogRotation: true,
 	}
-	err = GetLogger(Zap, config)
+	_, err = GetLogger(Zap, config)
 
 	// assert
 	l, ok := loggerInstance.(*zapLogger.LoggerImpl)
@@ -141,7 +141,7 @@ func (suite *LoggerTestSuite) TestShutdown() {
 	// arrange
 	suite.tempLogFile, suite.tempDir, err = createTempFile()
 
-	err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
+	_, err = GetLogger(Zap, Config{LogFile: suite.tempLogFile.Name()})
 	time.Sleep(time.Second)
 
 	// act
